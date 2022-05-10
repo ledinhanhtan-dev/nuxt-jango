@@ -1,5 +1,7 @@
 <template>
-  <Tutorial />
+  <main>
+    <h1 style="font-size: 3rem">Hello</h1>
+  </main>
 </template>
 
 <script>
