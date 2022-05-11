@@ -19,6 +19,7 @@ import { toast } from 'bulma-toast'
 import ProductItem from '@/components/products/ProductItem.vue'
 
 export default {
+  name: 'CategoryPage',
   components: { ProductItem },
   data() {
     return {

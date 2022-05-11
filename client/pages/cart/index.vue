@@ -50,7 +50,7 @@ import { mapGetters, mapActions } from 'vuex'
 import CartItem from '@/components/cart/CartItem.vue'
 
 export default {
-  name: 'cart',
+  name: 'CartPage',
   components: { CartItem },
   mounted() {
     document.title = `Cart | Nuxt-jango`

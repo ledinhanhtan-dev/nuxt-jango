@@ -25,7 +25,7 @@ import { mapGetters } from 'vuex'
 import ProductItem from '@/components/products/ProductItem.vue'
 
 export default {
-  name: 'IndexPage',
+  name: 'HomePage',
   components: { ProductItem },
   computed: {
     ...mapGetters(['latestProducts']),

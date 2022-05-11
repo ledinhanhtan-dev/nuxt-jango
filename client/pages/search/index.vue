@@ -19,7 +19,7 @@ import ProductItem from '@/components/products/ProductItem.vue'
 import { mapActions } from 'vuex'
 
 export default {
-  name: 'search',
+  name: 'SearchPage',
   components: { ProductItem },
   data() {
     return {

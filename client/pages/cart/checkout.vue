@@ -1,7 +1,9 @@
 <template></template>
 
 <script>
-export default {}
+export default {
+  name: 'CheckoutPage',
+}
 </script>
 
 <style></style>

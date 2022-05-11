@@ -37,6 +37,7 @@ import { mapActions } from 'vuex'
 import { toast } from 'bulma-toast'
 
 export default {
+  name: 'ProductPage',
   data() {
     return {
       product: {},
