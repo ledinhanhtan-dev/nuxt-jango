@@ -13,10 +13,18 @@
         <p><strong>Price: </strong>${{ product.price }}</p>
         <div class="field has-addons mt-6">
           <div class="control">
-            <input type="number" class="input" min="1" v-model="quantity" />
+            <input
+              type="number"
+              class="input"
+              min="1"
+              v-model="quantity"
+              @keypress.enter="addItemToCart"
+            />
           </div>
           <div class="control">
-            <a class="button is-dark">Add to Cart</a>
+            <button class="button is-dark" @click="addItemToCart">
+              Add to Cart
+            </button>
           </div>
         </div>
       </div>
@@ -25,6 +33,10 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+import { toast } from 'bulma-toast'
+import { timer } from '~/utils/promise'
+
 export default {
   data() {
     return {
@@ -32,12 +44,54 @@ export default {
       quantity: 1,
     }
   },
-  async fetch() {
-    const { cid, pid } = this.$route.params
-    this.$axios
-      .get(`api/products/${cid}/${pid}?format=json`)
-      .then(res => (this.product = res.data))
-      .catch(e => console.log(e))
+  fetch() {
+    this.fetchProduct()
+  },
+  created() {
+    if (Object.keys(this.product).length === 0) this.fetchProduct()
+  },
+  methods: {
+    ...mapActions(['addToCart', 'setIsLoading']),
+    async fetchProduct() {
+      this.setIsLoading(true)
+
+      const { cid, pid } = this.$route.params
+      await this.$axios
+        .get(`api/products/${cid}/${pid}?format=json`)
+        .then(res => {
+          this.product = res.data
+          document.title = `${this.product.name} | Nuxt-jango`
+        })
+        .catch(e => console.log(e))
+
+      await timer(100)
+      this.setIsLoading(false)
+    },
+    addItemToCart() {
+      const item = { product: this.product, quantity: +this.quantity }
+      this.addToCart(item)
+      this.quantity = 1
+
+      toast({
+        message: 'The product was added to the cart',
+        type: 'is-success',
+        dismissible: true,
+        pauseOnHover: true,
+        duration: 2000,
+        position: 'bottom-right',
+      })
+    },
+  },
+  watch: {
+    quantity(newValue, oldValue) {
+      if (!newValue) {
+        this.quantity = 1
+        return
+      }
+      if (isNaN(newValue) || +newValue < 1) {
+        this.quantity = oldValue
+      }
+    },
   },
 }
 </script>

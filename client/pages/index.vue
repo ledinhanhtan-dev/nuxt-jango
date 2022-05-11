@@ -38,6 +38,9 @@ export default {
   computed: {
     ...mapGetters(['latestProducts']),
   },
+  mounted() {
+    document.title = `Home | Nuxt-jango`
+  },
 }
 </script>
 
