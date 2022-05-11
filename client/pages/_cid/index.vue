@@ -32,7 +32,7 @@ export default {
 
       const { cid } = this.$route.params
       await this.$axios
-        .get(`api/categories/${cid}?format=json`)
+        .get(`api/products/${cid}?format=json`)
         .then(res => {
           this.category = res.data
           document.title = `${this.category.name} | Nuxt-jango`

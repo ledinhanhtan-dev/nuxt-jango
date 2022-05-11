@@ -23,6 +23,30 @@
       id="navbar-menu"
       :class="{ 'is-active': showMobileMenu }"
     >
+      <div class="navbar-start">
+        <div class="navbar-item">
+          <form @submit.prevent="toSearch">
+            <div class="field has-addons">
+              <div class="control">
+                <input
+                  type="text"
+                  class="input"
+                  placeholder="What are you looking for?"
+                  name="query"
+                  v-model="query"
+                  @keypress.enter="toSearch"
+                />
+              </div>
+              <div class="control">
+                <button class="button is-success">
+                  <font-awesome-icon icon="search" />
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
       <div class="navbar-end">
         <nuxt-link to="/summer" class="navbar-item">Summer</nuxt-link>
         <nuxt-link to="/winter" class="navbar-item">Winter</nuxt-link>
@@ -50,11 +74,15 @@ export default {
   data() {
     return {
       showMobileMenu: false,
+      query: '',
     }
   },
   methods: {
     toggleMobileMenu() {
       this.showMobileMenu = !this.showMobileMenu
+    },
+    toSearch() {
+      this.$router.push(`/search?query=${this.query}`)
     },
   },
   computed: {
