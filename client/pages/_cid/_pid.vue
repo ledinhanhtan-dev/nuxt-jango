@@ -35,7 +35,6 @@
 <script>
 import { mapActions } from 'vuex'
 import { toast } from 'bulma-toast'
-import { timer } from '~/utils/promise'
 
 export default {
   data() {
@@ -64,7 +63,6 @@ export default {
         })
         .catch(e => console.log(e))
 
-      await timer(100)
       this.setIsLoading(false)
     },
     addItemToCart() {

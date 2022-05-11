@@ -1,7 +1,7 @@
 <template>
   <div class="column is-3">
     <div class="box">
-      <figure class="image mb-4">
+      <figure class="image mb-4" :class="{ expand: expand }">
         <nuxt-link :to="product.get_absolute_url">
           <img :src="product.get_thumbnail" :alt="product.name" />
         </nuxt-link>
@@ -16,18 +16,31 @@
 <script>
 export default {
   name: 'ProductItem',
-  props: ['product'],
+  props: {
+    product: {
+      type: Object,
+      required: true,
+    },
+    expand: {
+      type: Boolean,
+      default: false,
+    },
+  },
 }
 </script>
 
-<style>
+<style lang="scss">
 .box {
   overflow: hidden;
 }
 
-.image {
+.expand {
   margin-top: -1.25rem;
   margin-left: -1.25rem;
   margin-right: -1.25rem;
+}
+
+img {
+  max-width: 100%;
 }
 </style>

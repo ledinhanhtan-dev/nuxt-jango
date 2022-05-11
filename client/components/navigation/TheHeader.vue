@@ -88,10 +88,7 @@ export default {
   computed: {
     cartTotalItems() {
       const quantities = this.$store.state.cart.items.map(item => item.quantity)
-      return (
-        quantities.length &&
-        quantities.reduce((total, quantity) => total + quantity)
-      )
+      return quantities.reduce((total, quantity) => total + quantity, 0)
     },
   },
 }

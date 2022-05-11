@@ -14,6 +14,7 @@
         v-for="product in latestProducts"
         :key="product.id"
         :product="product"
+        expand
       />
     </div>
   </main>
