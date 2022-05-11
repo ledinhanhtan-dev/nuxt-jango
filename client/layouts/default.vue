@@ -18,7 +18,11 @@
           <span aria-hidden="true"></span>
         </a>
 
-        <div class="navbar-menu" id="navbar-menu" :class="{'is-active': showMobileMenu}">
+        <div
+          class="navbar-menu"
+          id="navbar-menu"
+          :class="{ 'is-active': showMobileMenu }"
+        >
           <div class="navbar-end">
             <nuxt-link to="/summer" class="navbar-item">Summer</nuxt-link>
             <nuxt-link to="/winter" class="navbar-item">Winter</nuxt-link>
@@ -40,7 +44,9 @@
         </div>
       </div>
     </nav>
-    <nuxt />
+    <section class="section">
+      <nuxt />
+    </section>
     <footer class="footer">
       <p class="has-text-centered">Copyright (c) 2022</p>
     </footer>
