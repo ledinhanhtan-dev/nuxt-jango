@@ -8,6 +8,7 @@
         v-for="product in category.products"
         :key="product.id"
         :product="product"
+        expand
       />
     </div>
   </div>
